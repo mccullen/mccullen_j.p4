@@ -1,3 +1,8 @@
+/**
+Name: Jeff McCullen and Emma Elliott
+Date: April 10, 2016
+Description:
+*/
 #include "ConsoleInterface.h"
 #include "ComputerPlayer.h"
 #include "Lexicon.h"
@@ -6,43 +11,9 @@
 #include <string>
 #include <fstream>
 
-void printStatus(Lexicon::Status status)
-{
-	switch (status)
-	{
-	case Lexicon::WORD:
-		cout << "word\n";
-		break;
-	case Lexicon::WORD_PREFIX:
-		cout << "prefix\n";
-		break;
-	case Lexicon::NOT_WORD:
-		cout << "not word\n";
-		break;
-	}
-}
 int main(int argc, char* argv[])
 {
-	Lexicon lexicon("junk.txt");
-
-	cout << "cat: ";
-	printStatus(lexicon.wordStatus("cat"));
-
-	cout << "ca: ";
-	printStatus(lexicon.wordStatus("ca"));
-
-	cout << "car: ";
-	printStatus(lexicon.wordStatus("car"));
-
-	cout << "hello: ";
-	printStatus(lexicon.wordStatus("hello"));
-
-	cout << "eff: ";
-	printStatus(lexicon.wordStatus("eff"));
-
-
-
-/*
+/* TODO: Uncomment and finish
 
   int boardSize = 4;
   int rseed = 7;

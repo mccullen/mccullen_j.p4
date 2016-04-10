@@ -1,3 +1,8 @@
+/**
+Name: Jeff McCullen and Emma Elliott
+Date: April 10, 2016
+Description:
+*/
 #include <string>
 #include <vector>
 #include <fstream>

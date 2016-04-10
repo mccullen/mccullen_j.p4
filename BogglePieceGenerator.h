@@ -1,3 +1,8 @@
+/**
+Name: Jeff McCullen and Emma Elliott
+Date: April 10, 2016
+Description:
+*/
 #ifndef BOGGLE_PIECE_GENERATOR_H
 #define BOGGLE_PIECE_GENERATOR_H
 
