@@ -13,7 +13,8 @@ Description:
 
 int main(int argc, char* argv[])
 {
-/* TODO: Uncomment and finish
+/* 
+  TODO: Uncomment and finish
 
   int boardSize = 4;
   int rseed = 7;

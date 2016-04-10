@@ -53,6 +53,7 @@ bool Lexicon::isPrefix(const std::string& prefix,
 	// Go through every character in prefix.
 	// Break if any of the characters differ.
 	while (index < prefix.size() && 
+		index < word.size() &&
 		prefix[index] == word[index])
 	{
 		++index;
