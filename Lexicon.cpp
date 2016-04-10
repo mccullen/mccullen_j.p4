@@ -52,11 +52,16 @@ bool Lexicon::isPrefix(const std::string& prefix,
 
 	// Go through every character in prefix.
 	// Break if any of the characters differ.
-	while (index < prefix.size() && 
-		index < word.size() &&
-		prefix[index] == word[index])
+
+	// If the prefix is shorter than the word
+	if (prefix.size() <= word.size())
 	{
-		++index;
+		// check to see if it is actually a prefix
+		while (index < prefix.size() && 
+			prefix[index] == word[index])
+		{
+			++index;
+		}
 	}
 	return index >= prefix.size();
 }
