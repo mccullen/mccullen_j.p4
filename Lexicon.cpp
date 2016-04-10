@@ -63,6 +63,7 @@ bool Lexicon::isPrefix(const std::string& prefix,
 			++index;
 		}
 	}
+	// return true if prefix is a prefix of the word.
 	return index >= prefix.size();
 }
 
