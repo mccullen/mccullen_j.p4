@@ -15,12 +15,42 @@ Description:
 using namespace std;
 
 void testLexicon();
+void testLexiconFromConsole();
 int main(int argc, char** argv)
 {
-	testLexicon();
+	testLexiconFromConsole();
+	//testLexicon();
 	return 0;
 }
 
+void testLexiconFromConsole()
+{
+	Lexicon lexicon("lexicon.txt");
+
+	string word;
+	string exitWord = "-1";
+	do
+	{
+		cout << "Enter word or " << exitWord << " to exit: ";
+		cin >> word;
+
+		if (word != exitWord)
+		{
+			switch (lexicon.wordStatus(word))
+			{
+			case Lexicon::WORD:
+				cout << "WORD\n";
+				break;
+			case Lexicon::NOT_WORD:
+				cout << "NOT_WORD\n";
+				break;
+			case Lexicon::WORD_PREFIX:
+				cout << "WORD_PREFIX\n";
+				break;
+			}
+		}
+	} while (word != exitWord);
+}
 void testLexicon()
 {
 	Lexicon lexicon("testLexicon.txt");
