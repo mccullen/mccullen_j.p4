@@ -13,19 +13,22 @@ Description:
 
 int main(int argc, char* argv[])
 {
-/* 
-  TODO: Uncomment and finish
 
+  // Set default command line arguments
   int boardSize = 4;
   int rseed = 7;
   int minLetters = 3;
   string lexiconFile = "lexicon-clean.txt";
 
+  // If there is an invalid number of command line arguments,
+  // print an error and exit.
   if(argc != 5 && argc != 1){
     cerr << "Incorrect number of command line arguments" << endl;
     exit(1);
   }
 
+  // If the user entered four command line arguments, change the
+  // default arguments to the ones specified at the command line.
   if( argc == 5 ){
     boardSize = atoi(argv[1]);
     rseed = atoi(argv[2]);
@@ -33,7 +36,8 @@ int main(int argc, char* argv[])
     lexiconFile = string(argv[4]);
   }
 
-  // check the arguments passed in
+  // check the arguments passed in to make sure they are valid. Print error
+  // and exit if one or more are invalid.
   ifstream testStream(lexiconFile.c_str());
   if( boardSize < 3 || rseed == 0 ||	minLetters < 2 || testStream.fail() ){
     cerr << "Invalid arguments" << endl;
@@ -43,6 +47,7 @@ int main(int argc, char* argv[])
 
   // make the random character generator
   BogglePieceGenerator charGen(boardSize*boardSize, rseed);
+/* 
 
   // make the console interface
   ConsoleInterface console;

@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 
 void testLexiconFromConsole()
 {
-	Lexicon lexicon("lexicon.txt");
+	Lexicon lexicon("lexicon-clean.txt");
 
 	string word;
 	string exitWord = "-1";

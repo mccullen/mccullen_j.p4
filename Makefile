@@ -3,16 +3,24 @@
 # Description: Boggle makefile.
 
 CC = g++
-CFLAGS = -g -Wall
+CFLAGS = -g #-Wall
 
 all: boggle.exe tests.exe
 
 tests.exe: tests.o BogglePieceGenerator.o Lexicon.o
 	$(CC) $(CFLAGS) -o tests.exe tests.o BogglePieceGenerator.o Lexicon.o
 
-boggle.exe: Main.o BogglePieceGenerator.o Lexicon.o
+boggle.exe: Main.o BogglePieceGenerator.o Lexicon.o ConsoleInterface.o \
+BoggleBoard.o
 	$(CC) $(CFLAGS) -o boggle.exe Main.o BogglePieceGenerator.o \
-	Lexicon.o
+	Lexicon.o ConsoleInterface.o BoggleBoard.o
+
+BoggleBoard.o: BoggleBoard.cpp BoggleBoard.h BogglePieceGenerator.h
+	$(CC) $(CFLAGS) -c BoggleBoard.cpp
+
+ConsoleInterface.o: ConsoleInterface.cpp ConsoleInterface.h \
+BoggleBoard.h
+	$(CC) $(CFLAGS) -c ConsoleInterface.cpp
 
 tests.o: tests.cpp
 	$(CC) $(CFLAGS) -c tests.cpp

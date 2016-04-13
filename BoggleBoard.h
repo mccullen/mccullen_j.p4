@@ -19,8 +19,10 @@ public:
 	// methods
 
 	/*
-	 * Creates a board of the given size.  Fills the board with characters from the RandomCharacterGenerator.
-	 * The board should be filled from left to right and top to bottom, e.g, 
+	 * Creates a board of the given size.  Fills the board 
+	 * with characters from the RandomCharacterGenerator.
+	 * The board should be filled from left to right and top 
+	 * to bottom, e.g, 
 	 *   1  2  3  4
 	 *   5  6  7  8
 	 *   9 10 11 12

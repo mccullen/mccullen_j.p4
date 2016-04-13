@@ -12,9 +12,11 @@ BogglePieceGenerator::BogglePieceGenerator(int boardSize, int rseed){
 
   // 1. choose the set of boggle cubes
   if( boardSize <= SMALL_BOARD ){
-    this->cubes = vector<string>(this->cube16pattern, this->cube16pattern + SMALL_BOARD);
+    this->cubes = vector<string>(this->cube16pattern, 
+      this->cube16pattern + SMALL_BOARD);
   }else{
-    this->cubes = vector<string>(this->cube25pattern, this->cube25pattern + LARGE_BOARD);
+    this->cubes = vector<string>(this->cube25pattern, 
+      this->cube25pattern + LARGE_BOARD);
   }
 
   // 2. Setup the random number generator

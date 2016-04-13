@@ -24,7 +24,8 @@ class ConsoleInterface
   // prints Boggle Board to the console
   void printBoard(BoggleBoard&);
   /*
-   * Read in player words.  Does not check if they are valid or have been played before.
+   * Read in player words.  Does not check if they are 
+   * valid or have been played before.
    * Only checks whether they enter 1 string with no spaces.
    * Returns true if the human player submitted a word.
    */
@@ -34,9 +35,11 @@ class ConsoleInterface
   // prints the scores to the console
   void printScore(int humanScore, int computerScore);
 
-  // writes the strings from begin to end to a log file called "<logPrefix>.<playCount>.txt"
+  // writes the strings from begin to end to a log file 
+  // called "<logPrefix>.<playCount>.txt"
   template <class InputIterator>
-    void logWords(InputIterator begin, InputIterator end, string logPrefix, int playCount){
+    void logWords(InputIterator begin, InputIterator end, 
+      string logPrefix, int playCount){
     stringstream ss;
     string fileName;
     ss << logPrefix << playCount << ".txt";
