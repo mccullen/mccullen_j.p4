@@ -41,4 +41,4 @@ ComputerPlayer.h: Lexicon.h
 ConsoleInterface.h: BoggleBoard.h
 
 clean:
-	rm -f boggle.exe *.o *~
+	rm -f tests.exe boggle.exe *.o *~
