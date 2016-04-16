@@ -84,6 +84,8 @@ private:
 
 	virtual void addSuccessors(Vertex* vertex);
 	virtual bool isAdj(Vertex* v1, Vertex* v2);
+	virtual bool isWordOnBoardAux(Vertex* vertex, std::string& word,
+		int indexIntoWord);
 };
 
 #endif
