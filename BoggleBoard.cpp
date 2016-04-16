@@ -157,11 +157,22 @@ bool BoggleBoard::isWordOnBoard(string word)
 	{
 		if ((*iter)->Letter == word[0])
 		{
+			(*iter)->Visited = true;
 			return isWordOnBoardAux(*iter, word, 1);
 		}
 	}
+	reset();
 	return false;
 	
+}
+
+void BoggleBoard::reset()
+{
+	for (set<Vertex*>::iterator iter = _graph.begin();
+		iter != _graph.end(); ++iter)
+	{
+		(*iter)->Visited = false;
+	}
 }
 
 bool BoggleBoard::isWordOnBoardAux(
@@ -179,6 +190,7 @@ bool BoggleBoard::isWordOnBoardAux(
 		if ((*iter)->Letter == word[indexIntoWord])
 		{
 			// Try choice
+			(*iter)->Visited = true;
 			if (isWordOnBoardAux(*iter, word, indexIntoWord + 1))
 			{
 				return true;

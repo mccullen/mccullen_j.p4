@@ -86,6 +86,7 @@ private:
 	virtual bool isAdj(Vertex* v1, Vertex* v2);
 	virtual bool isWordOnBoardAux(Vertex* vertex, std::string& word,
 		int indexIntoWord);
+	virtual void reset();
 };
 
 #endif
