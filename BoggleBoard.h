@@ -9,6 +9,7 @@ Description:
 #include "BogglePieceGenerator.h"
 #include <vector>
 #include <utility>
+#include <list>
 
 using namespace std;
 
@@ -44,6 +45,17 @@ public:
 	 * returns true if this word is found on the board
 	 */
 	bool isWordOnBoard(string word);
+private:
+	class Vertex
+	{
+	public:
+		int Row;
+		int Column;
+		char Letter;
+		bool Visited;
+		std::list<Vertex*> Successors;
+	};
+
 };
 
 #endif
