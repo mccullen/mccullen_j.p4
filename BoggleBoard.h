@@ -10,6 +10,7 @@ Description:
 #include <vector>
 #include <utility>
 #include <list>
+#include <set>
 
 using namespace std;
 
@@ -49,6 +50,8 @@ private:
 	class Vertex
 	{
 	public:
+		Vertex(int row, int column, char letter);
+
 		int Row;
 		int Column;
 		char Letter;
@@ -56,6 +59,31 @@ private:
 		std::list<Vertex*> Successors;
 	};
 
+	/*
+	class Edge
+	{
+	public:
+		Edge(Vertex* start, Vertex* end);
+
+		Vertex* Start;
+		Vertex* End;
+	};
+
+	class Graph
+	{
+	public:
+		void addVertex(Vertex* vertex);
+		void addEdge(Vertex* v1, Vertex* v2);
+
+		std::set<Vertex*> Vertices;
+		std::set<Edge*> Edges;
+	};
+	*/
+	std::set<Vertex*>  _graph;
+	int _width;
+
+	virtual void addSuccessors(Vertex* vertex);
+	virtual bool isAdj(Vertex* v1, Vertex* v2);
 };
 
 #endif
