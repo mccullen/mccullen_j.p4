@@ -10,6 +10,7 @@ Description:
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <set>
 
 int main(int argc, char* argv[])
 {
@@ -74,38 +75,56 @@ int main(int argc, char* argv[])
     cout << endl;
 
     // STUDENT SECTION
-
+    // Make a set of humanWords
+    set<string> humanWords;
+    
     // get human player words
     string humanPlayerWord;
     while( console.readNextMove(humanPlayerWord) ){
 
       // check to see whether the string is the correct length
       // if not, ask for another
+      if(humanPlayerWord.length() < minLetters || humanPlayerWord.length() > (boardSize * boardSize))
+      {
+	cout << "Error: Word is not the correct size.\n";
+      }	
 
       // check to see whether the string is actually a word
       // if not, ask for another
+      else if(lexicon.wordStatus(humanPlayerWord) != Lexicon::WORD)
+      {
+	cout << "Error: Word is not a word.\n";
+      }
 
       // check to see whether it is on the board
       // if not, ask for another
-      if (!board.isWordOnBoard(humanPlayerWord))
+      else if (!board.isWordOnBoard(humanPlayerWord))
       {
         cout << "Error: Word is not on board.\n";
       }
 
       // check to see whether it has been played before
       // if so, ask for another
-      //if ()
+      else if (humanWords.find(humanPlayerWord) != humanWords.end())
+      {
+        cout << "Error: Word already played.\n";
+      }
+      
+      else
+      {
+	humanWords.insert(humanPlayerWord);
+      }
 
     }
 
-  /*
-  TODO: This section...
+    int humanScore = humanWords.size();
 
-    int humanScore = ...
+    // log the human player's words
+    console.logWords(humanWords.begin(), humanWords.end(), humanFilePrefix, playCount);
 
-      // log the human player's words
-      console.logWords(humanWords.begin(), humanWords.end(), humanFilePrefix, playCount);
 
+      /*  
+    TODO: This section...
     // ask computer player for words
     cout << endl << "Thinking..." << endl << endl;;
     computer.playBoggle(...);
@@ -113,12 +132,13 @@ int main(int argc, char* argv[])
 
     // log the computer player's words
     console.logWords(compWords.begin(), compWords.end(), computerFilePrefix, playCount);
+      */
 
     // print score
-    console.printScore(humanScore, computerScore);
+    console.printScore(humanScore, 0);
 
     // END STUDENT SECTION 
-  */
+ 
 
     wannaPlay = console.playAnotherGame();
   }
