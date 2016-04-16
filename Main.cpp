@@ -13,7 +13,6 @@ Description:
 
 int main(int argc, char* argv[])
 {
-
   // Set default command line arguments
   int boardSize = 4;
   int rseed = 7;
@@ -47,7 +46,6 @@ int main(int argc, char* argv[])
 
   // make the random character generator
   BogglePieceGenerator charGen(boardSize*boardSize, rseed);
-/* 
 
   // make the console interface
   ConsoleInterface console;
@@ -64,6 +62,7 @@ int main(int argc, char* argv[])
 
   int playCount = 0;
   bool wannaPlay = true;
+
   while( wannaPlay ){
     playCount++;
 
@@ -88,11 +87,19 @@ int main(int argc, char* argv[])
 
       // check to see whether it is on the board
       // if not, ask for another
+      if (!board.isWordOnBoard(humanPlayerWord))
+      {
+        cout << "Error: Word is not on board.\n";
+      }
 
       // check to see whether it has been played before
       // if so, ask for another
+      //if ()
 
     }
+
+  /*
+  TODO: This section...
 
     int humanScore = ...
 
@@ -111,8 +118,8 @@ int main(int argc, char* argv[])
     console.printScore(humanScore, computerScore);
 
     // END STUDENT SECTION 
+  */
 
     wannaPlay = console.playAnotherGame();
   }
-  */
 }

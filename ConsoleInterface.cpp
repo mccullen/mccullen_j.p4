@@ -49,7 +49,8 @@ void ConsoleInterface::printRow(BoggleBoard& board, int row){
 
 
 /*
- * Read in player words.  Does not check if they are valid or have been played before.
+ * Read in player words.  Does not check if they are valid or
+ * have been played before.
  * Returns true if the human player submitted a word.
  */
 bool ConsoleInterface::readNextMove(string& word){

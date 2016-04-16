@@ -11,9 +11,12 @@ tests.exe: tests.o BogglePieceGenerator.o Lexicon.o
 	$(CC) $(CFLAGS) -o tests.exe tests.o BogglePieceGenerator.o Lexicon.o
 
 boggle.exe: Main.o BogglePieceGenerator.o Lexicon.o ConsoleInterface.o \
-BoggleBoard.o
+BoggleBoard.o ComputerPlayer.o
 	$(CC) $(CFLAGS) -o boggle.exe Main.o BogglePieceGenerator.o \
-	Lexicon.o ConsoleInterface.o BoggleBoard.o
+	Lexicon.o ConsoleInterface.o BoggleBoard.o ComputerPlayer.o
+
+ComputerPlayer.o: ComputerPlayer.cpp ComputerPlayer.h Lexicon.h
+	$(CC) $(CFLAGS) -c ComputerPlayer.cpp
 
 BoggleBoard.o: BoggleBoard.cpp BoggleBoard.h BogglePieceGenerator.h
 	$(CC) $(CFLAGS) -c BoggleBoard.cpp
