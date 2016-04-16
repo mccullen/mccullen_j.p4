@@ -187,7 +187,7 @@ bool BoggleBoard::isWordOnBoardAux(
 		iter != vertex->Successors.end(); ++iter)
 	{
 		// If promising
-		if ((*iter)->Letter == word[indexIntoWord])
+		if ((*iter)->Letter == word[indexIntoWord] && !(*iter)->Visited)
 		{
 			// Try choice
 			(*iter)->Visited = true;
