@@ -66,8 +66,9 @@ private:
 		const Tile& tile, int indexIntoWord);
 	virtual bool promising(int row, int column,
 		const std::string& word, int indexIntoWord) const;
-
 	virtual bool inRange(int row, int column) const;
+	virtual bool validRow(int row, const Tile& tile) const;
+	virtual bool validColumn(int column, const Tile& tile) const;
 };
 
 #endif

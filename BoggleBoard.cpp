@@ -113,6 +113,54 @@ bool BoggleBoard::isWordOnBoardAux(const std::string& word,
 	const Tile& tile,
 	int indexIntoWord)
 {
+/*
+	bool retVal;
+	if (promising(tile.Row, tile.Column, word, indexIntoWord))
+	{
+		if (indexIntoWord == word.size())
+		{
+			retVal = true;
+		}
+		else
+		{
+			int row = tile.Row - 1;
+			while (row <= tile.Row + 1 &&
+				row < _width &&
+				row >= 0)
+			{
+				int column = tile.Column - 1;
+				while (column <= tile.Column + 1 &&
+					column < _width &&
+					column >= 0 &&
+					!(row == tile.Row && column == tile.Column))
+				{
+					_board[row][column].Visited = true;
+					retVal = isWordOnBoardAux(word,
+						_board[row][column],
+						indexIntoWord + 1);
+
+					if (isWordOnBoardAux(word,
+						_board[row][column],
+						indexIntoWord + 1))
+					{
+						return true;
+					}
+
+					_board[row][column].Visited = false;
+					++column;
+				}
+				++row;
+			}
+		}
+	}
+	else
+	{
+		retVal = false;
+	}
+	return retVal;
+*/
+
+/*
 	if (indexIntoWord == word.size())
 	{
 		return true;
@@ -141,6 +189,49 @@ bool BoggleBoard::isWordOnBoardAux(const std::string& word,
 		}
 	}
 	return false;
+*/
+	if (indexIntoWord == word.size())
+	{
+		return true;
+	}
+	// Go through all successors
+	for (int row = tile.Row - 1; row <= tile.Row + 1; ++row)
+	{
+		if (validRow(row, tile))
+		{
+			for (int column = tile.Column - 1;
+				column <= tile.Column + 1; ++column)
+			{
+				if (validColumn(column, tile))
+				{
+					// If in range and promising
+					if (!(row == tile.Row && column == tile.Column) &&
+						promising(row, column, word, indexIntoWord))
+					{
+						// Try choice
+						_board[row][column].Visited = true;
+						if (isWordOnBoardAux(word,
+							_board[row][column],
+							indexIntoWord + 1))
+						{
+							return true;
+						}
+						_board[row][column].Visited = false;
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+bool BoggleBoard::validRow(int row, const Tile& tile) const
+{
+	return row >= 0 && row < _width && row <= tile.Row + 1;
+}
+
+bool BoggleBoard::validColumn(int column, const Tile& tile) const
+{
+	return column >= 0 && column < _width && column <= tile.Column + 1;
 }
 
 bool BoggleBoard::promising(int row, int column, 
