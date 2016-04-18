@@ -52,6 +52,8 @@ private:
 	public:
 		char Letter;
 		bool Visited;
+		int Row;
+		int Column;
 	};
 
 	int _width;
@@ -60,6 +62,12 @@ private:
 	virtual Tile** allocateBoard(int width, 
 		BogglePieceGenerator& gen) const;
 	virtual void resetVisitedStatusOfTilesToFalse();
+	virtual bool isWordOnBoardAux(const std::string& word,
+		const Tile& tile, int indexIntoWord);
+	virtual bool promising(int row, int column,
+		const std::string& word, int indexIntoWord) const;
+
+	virtual bool inRange(int row, int column) const;
 };
 
 #endif

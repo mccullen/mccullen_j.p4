@@ -46,6 +46,8 @@ BoggleBoard::Tile** BoggleBoard::allocateBoard(int width,
 			// set the letter and visited properties
 			board[row][column].Letter = gen.getNextChar();
 			board[row][column].Visited = false;
+			board[row][column].Row = row;
+			board[row][column].Column = column;
 		}
 	}
 	return board;
@@ -93,17 +95,65 @@ bool BoggleBoard::isWordOnBoard(string word)
 	resetVisitedStatusOfTilesToFalse();
 
 	// TODO: finish this function...
-}
-
-void BoggleBoard::resetVisitedStatusOfTilesToFalse()
-{
 	for (int row = 0; row < _width; ++row)
 	{
 		for (int column = 0; column < _width; ++column)
 		{
-			_board[row][column].Visited = false;
+			if (isWordOnBoardAux(word, _board[row][column], 0))
+			{
+				return true;
+			}
 		}
 	}
+	return false;
+	//return isWordOnBoardAux(word, _board[0][0], 0);
+}
+
+bool BoggleBoard::isWordOnBoardAux(const std::string& word, 
+	const Tile& tile,
+	int indexIntoWord)
+{
+	if (indexIntoWord == word.size())
+	{
+		return true;
+	}
+	// Go through all successors
+	for (int row = tile.Row - 1; row <= tile.Row + 1; ++row)
+	{
+		for (int column = tile.Column - 1;
+			column <= tile.Column + 1; ++column)
+		{
+			// If in range and promising
+			if (inRange(row, column) && 
+				!(row == tile.Row && column == tile.Column) &&
+				promising(row, column, word, indexIntoWord))
+			{
+				// Try choice
+				_board[row][column].Visited = true;
+				if (isWordOnBoardAux(word,
+					_board[row][column],
+					indexIntoWord + 1))
+				{
+					return true;
+				}
+				_board[row][column].Visited = false;
+			}
+		}
+	}
+	return false;
+}
+
+bool BoggleBoard::promising(int row, int column, 
+	const std::string& word, int indexIntoWord) const
+{
+	return _board[row][column].Letter == word[indexIntoWord] &&
+		_board[row][column].Visited == false;
+}
+
+bool BoggleBoard::inRange(int row, int column) const
+{
+	return row >= 0 && column >= 0 &&
+		row < _width && column < _width;
 }
 
 /*
@@ -134,4 +184,16 @@ bool BoggleBoard::isWordOnBoardAux(
 	return false;
 }
 */
+
+
+void BoggleBoard::resetVisitedStatusOfTilesToFalse()
+{
+	for (int row = 0; row < _width; ++row)
+	{
+		for (int column = 0; column < _width; ++column)
+		{
+			_board[row][column].Visited = false;
+		}
+	}
+}
 
