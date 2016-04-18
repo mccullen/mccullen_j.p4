@@ -57,7 +57,9 @@ private:
 	int _width;
 	Tile** _board;
 
-	virtual Tile** allocateBoard(int width) const;
+	virtual Tile** allocateBoard(int width, 
+		BogglePieceGenerator& gen) const;
+	virtual void resetVisitedStatusOfTilesToFalse();
 };
 
 #endif

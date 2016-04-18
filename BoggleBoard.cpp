@@ -23,24 +23,29 @@ using namespace std;
  *  13 14 15 16
  */
 BoggleBoard::BoggleBoard(int width, BogglePieceGenerator& gen) : 
-	_width(width), _board(allocateBoard(width))
+	_width(width), _board(allocateBoard(width, gen))
 {
 }
 
-BoggleBoard::Tile** BoggleBoard::allocateBoard(int width) const
+BoggleBoard::Tile** BoggleBoard::allocateBoard(int width,
+	BogglePieceGenerator& gen) const
 {
 	Tile** board;
+	// Allocate rows.
+	board = new Tile*[width];
+
 
 	// For every row
 	for (int row = 0; row < width; ++row)
 	{
-		// allocate row of length width
-		board = new Tile*[width];
+		// allocate columns
+		board[row] = new Tile[width];
 		// For every column in row
 		for (int column = 0; column < width; ++column)
 		{
-			// allocate column of length width
-			board[row] = new Tile[width];
+			// set the letter and visited properties
+			board[row][column].Letter = gen.getNextChar();
+			board[row][column].Visited = false;
 		}
 	}
 	return board;
@@ -66,6 +71,13 @@ BoggleBoard& BoggleBoard::operator=(const BoggleBoard& rhs)
  */
 char BoggleBoard::getLetter(int row,int column)
 {
+	if (row < 0 || row >= _width ||
+		column < 0 || column >= _width)
+	{
+		// TODO: throw exception
+		cerr << "Exception thrown!\n";
+	}
+	return _board[row][column].Letter;
 }
 
 int BoggleBoard::getWidth()
@@ -78,6 +90,20 @@ int BoggleBoard::getWidth()
  */
 bool BoggleBoard::isWordOnBoard(string word)
 {
+	resetVisitedStatusOfTilesToFalse();
+
+	// TODO: finish this function...
+}
+
+void BoggleBoard::resetVisitedStatusOfTilesToFalse()
+{
+	for (int row = 0; row < _width; ++row)
+	{
+		for (int column = 0; column < _width; ++column)
+		{
+			_board[row][column].Visited = false;
+		}
+	}
 }
 
 /*
