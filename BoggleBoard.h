@@ -47,46 +47,17 @@ public:
 	 */
 	bool isWordOnBoard(string word);
 private:
-	class Vertex
+	class Tile
 	{
 	public:
-		Vertex(int row, int column, char letter);
-
-		int Row;
-		int Column;
 		char Letter;
 		bool Visited;
-		std::list<Vertex*> Successors;
 	};
 
-	/*
-	class Edge
-	{
-	public:
-		Edge(Vertex* start, Vertex* end);
-
-		Vertex* Start;
-		Vertex* End;
-	};
-
-	class Graph
-	{
-	public:
-		void addVertex(Vertex* vertex);
-		void addEdge(Vertex* v1, Vertex* v2);
-
-		std::set<Vertex*> Vertices;
-		std::set<Edge*> Edges;
-	};
-	*/
-	std::set<Vertex*>  _graph;
 	int _width;
+	Tile** _board;
 
-	virtual void addSuccessors(Vertex* vertex);
-	virtual bool isAdj(Vertex* v1, Vertex* v2);
-	virtual bool isWordOnBoardAux(Vertex* vertex, std::string& word,
-		int indexIntoWord);
-	virtual void reset();
+	virtual Tile** allocateBoard(int width) const;
 };
 
 #endif

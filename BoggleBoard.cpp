@@ -22,101 +22,34 @@ using namespace std;
  *   9 10 11 12
  *  13 14 15 16
  */
-BoggleBoard::BoggleBoard(int width, BogglePieceGenerator& gen)
+BoggleBoard::BoggleBoard(int width, BogglePieceGenerator& gen) : 
+	_width(width), _board(allocateBoard(width))
 {
-	_width = width;
+}
 
-	// Add verticies
+BoggleBoard::Tile** BoggleBoard::allocateBoard(int width) const
+{
+	Tile** board;
+
+	// For every row
 	for (int row = 0; row < width; ++row)
 	{
+		// allocate row of length width
+		board = new Tile*[width];
+		// For every column in row
 		for (int column = 0; column < width; ++column)
 		{
-			Vertex* newVertex =
-				new Vertex(row, column, gen.getNextChar());
-			_graph.insert(newVertex);
+			// allocate column of length width
+			board[row] = new Tile[width];
 		}
 	}
-
-	// Add successors for each vertex
-	for (set<Vertex*>::iterator iter = _graph.begin();
-		iter != _graph.end(); ++iter)
-	{
-		addSuccessors(*iter);
-
-		/* 
-		//Print successors
-		cout << "Successors for vertex " << (*iter)->Letter
-		     << ":\n";
-		for (list<Vertex*>::iterator i = (*iter)->Successors.begin();
-			i != (*iter)->Successors.end(); ++i)
-		{
-			cout << (*i)->Letter << endl;
-		}
-		*/
-	}
-}
-// Add successors
-void BoggleBoard::addSuccessors(Vertex* vertex)
-{
-	for (set<Vertex*>::iterator iter = _graph.begin();
-		iter != _graph.end(); ++iter)
-	{
-		if (isAdj(*iter, vertex))
-		{
-			(vertex->Successors).push_back(*iter);
-		}
-	}
+	return board;
 }
 
-// is adj
-bool BoggleBoard::isAdj(Vertex* v1, Vertex* v2)
-{
-	return 
-		// Row is the same and column is one different
-		(v1->Row == v2->Row && 
-		(v1->Column == v2->Column - 1 || v1->Column == v2->Column + 1)) ||
-
-		// Column is same and row is one different
-		(v1->Column == v2->Column &&
-		(v1->Row == v2->Row - 1 || v1->Row == v2->Row + 1)) ||
-
-		// Row and column differ by 1
-		((v1->Row == v2->Row - 1 || v1->Row == v2->Row + 1)
-		
-		&&
-		 (v1->Column == v2->Column - 1 || v1->Column == v2->Column + 1));
-}
-
-/*
-// Edge constructor
-BoggleBoard::Edge::Edge(Vertex* start, Vertex* end) : 
-	Start(start), End(end)
-{
-}
-
-// Add vertex
-void BoggleBoard::Graph::addVertex(Vertex* vertex)
-{
-	Vertices.insert(vertex);
-}
-
-// Add edge
-void BoggleBoard::Graph::addEdge(Vertex* v1, Vertex* v2)
-{
-	Edge* edge = new Edge(v1, v2);
-	Edges.insert(edge);
-}
-*/
-
-// Vertex constructor
-BoggleBoard::Vertex::Vertex(int row, int column, char letter) : 
-	Row(row), Column(column),
-	Letter(letter), Visited(false)
-{
-}
 
 BoggleBoard::~BoggleBoard(void)
 {
+	// TODO: deallocate board
 }
 
 BoggleBoard::BoggleBoard(const BoggleBoard& original)
@@ -133,13 +66,6 @@ BoggleBoard& BoggleBoard::operator=(const BoggleBoard& rhs)
  */
 char BoggleBoard::getLetter(int row,int column)
 {
-	set<Vertex*>::iterator iter = _graph.begin();
-	while (iter != _graph.end() &&
-		((*iter)->Row != row || (*iter)->Column != column))
-	{
-		++iter;
-	}
-	return (*iter)->Letter;
 }
 
 int BoggleBoard::getWidth()
@@ -152,29 +78,9 @@ int BoggleBoard::getWidth()
  */
 bool BoggleBoard::isWordOnBoard(string word)
 {
-	for (set<Vertex*>::iterator iter = _graph.begin();
-		iter != _graph.end(); ++iter)
-	{
-		if ((*iter)->Letter == word[0])
-		{
-			(*iter)->Visited = true;
-			return isWordOnBoardAux(*iter, word, 1);
-		}
-	}
-	reset();
-	return false;
-	
 }
 
-void BoggleBoard::reset()
-{
-	for (set<Vertex*>::iterator iter = _graph.begin();
-		iter != _graph.end(); ++iter)
-	{
-		(*iter)->Visited = false;
-	}
-}
-
+/*
 bool BoggleBoard::isWordOnBoardAux(
 	Vertex* vertex, string& word, int indexIntoWord)
 {
@@ -201,4 +107,5 @@ bool BoggleBoard::isWordOnBoardAux(
 
 	return false;
 }
+*/
 
