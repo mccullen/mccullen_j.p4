@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
   Lexicon lexicon(lexiconFile);
 
   // make the computer player
-  ComputerPlayer computer(lexicon);
+  ComputerPlayer computer;
 
   // make the log file prefixes
   string humanFilePrefix = "human";

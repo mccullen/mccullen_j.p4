@@ -29,7 +29,7 @@ Lexicon::Status Lexicon::wordStatus(string word)
 
 	// - While the status is not WORD && there are still words
 	//   left to check
-	list<string>::iterator iter = _words.begin();
+	list<string>::const_iterator iter = _words.begin();
 	while (status != WORD && iter != _words.end())
 	{
 		if (word == *iter)

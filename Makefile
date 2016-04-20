@@ -15,7 +15,8 @@ BoggleBoard.o ComputerPlayer.o
 	$(CC) $(CFLAGS) -o boggle.exe Main.o BogglePieceGenerator.o \
 	Lexicon.o ConsoleInterface.o BoggleBoard.o ComputerPlayer.o
 
-ComputerPlayer.o: ComputerPlayer.cpp ComputerPlayer.h Lexicon.h
+ComputerPlayer.o: ComputerPlayer.cpp ComputerPlayer.h Lexicon.h \
+	BoggleBoard.h
 	$(CC) $(CFLAGS) -c ComputerPlayer.cpp
 
 BoggleBoard.o: BoggleBoard.cpp BoggleBoard.h BogglePieceGenerator.h
@@ -39,7 +40,7 @@ Lexicon.o: Lexicon.cpp Lexicon.h
 
 BoggleBoard.h: BogglePieceGenerator.h
 
-ComputerPlayer.h: Lexicon.h
+ComputerPlayer.h: Lexicon.h BoggleBoard.h
 
 ConsoleInterface.h: BoggleBoard.h
 

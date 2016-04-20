@@ -7,11 +7,19 @@ Description:
 #define COMPUTER_PLAYER_H
 
 #include "Lexicon.h"
+#include "BoggleBoard.h"
+#include <set>
 
 class ComputerPlayer
 {
 public:
-	ComputerPlayer(const Lexicon& lexicon);
+	ComputerPlayer();
+
+	virtual void playBoggle(const BoggleBoard& board, 
+		const Lexicon& lexicon,
+		const std::set<std::string>& humanWords,
+		std::set<std::string>& compWords) const;
+
 	virtual ~ComputerPlayer(void);
 };
 

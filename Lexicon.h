@@ -17,7 +17,7 @@ public:
 	enum Status{NOT_WORD, WORD, WORD_PREFIX};
 
 	Lexicon(std::string lexFile);
-	virtual ~Lexicon(void);
+	virtual ~Lexicon();
 
 	Status wordStatus(std::string word);
 
