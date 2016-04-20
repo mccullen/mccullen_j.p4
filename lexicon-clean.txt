@@ -1,4 +1,3 @@
-bob
 aa
 ab
 ad

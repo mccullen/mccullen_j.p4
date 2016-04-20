@@ -113,83 +113,6 @@ bool BoggleBoard::isWordOnBoardAux(const std::string& word,
 	const Tile& tile,
 	int indexIntoWord)
 {
-/*
-	bool retVal;
-	if (promising(tile.Row, tile.Column, word, indexIntoWord))
-	{
-		if (indexIntoWord == word.size())
-		{
-			retVal = true;
-		}
-		else
-		{
-			int row = tile.Row - 1;
-			while (row <= tile.Row + 1 &&
-				row < _width &&
-				row >= 0)
-			{
-				int column = tile.Column - 1;
-				while (column <= tile.Column + 1 &&
-					column < _width &&
-					column >= 0 &&
-					!(row == tile.Row && column == tile.Column))
-				{
-					_board[row][column].Visited = true;
-					retVal = isWordOnBoardAux(word,
-						_board[row][column],
-						indexIntoWord + 1);
-
-					if (isWordOnBoardAux(word,
-						_board[row][column],
-						indexIntoWord + 1))
-					{
-						return true;
-					}
-
-					_board[row][column].Visited = false;
-					++column;
-				}
-				++row;
-			}
-		}
-	}
-	else
-	{
-		retVal = false;
-	}
-	return retVal;
-*/
-
-/*
-	if (indexIntoWord == word.size())
-	{
-		return true;
-	}
-	// Go through all successors
-	for (int row = tile.Row - 1; row <= tile.Row + 1; ++row)
-	{
-		for (int column = tile.Column - 1;
-			column <= tile.Column + 1; ++column)
-		{
-			// If in range and promising
-			if (inRange(row, column) && 
-				!(row == tile.Row && column == tile.Column) &&
-				promising(row, column, word, indexIntoWord))
-			{
-				// Try choice
-				_board[row][column].Visited = true;
-				if (isWordOnBoardAux(word,
-					_board[row][column],
-					indexIntoWord + 1))
-				{
-					return true;
-				}
-				_board[row][column].Visited = false;
-			}
-		}
-	}
-	return false;
-*/
 	if (indexIntoWord == word.size())
 	{
 		return true;
@@ -246,36 +169,6 @@ bool BoggleBoard::inRange(int row, int column) const
 	return row >= 0 && column >= 0 &&
 		row < _width && column < _width;
 }
-
-/*
-bool BoggleBoard::isWordOnBoardAux(
-	Vertex* vertex, string& word, int indexIntoWord)
-{
-	if (indexIntoWord == word.size())
-	{
-		return true;
-	}
-	// Go through all successors
-	for (list<Vertex*>::iterator iter = vertex->Successors.begin();
-		iter != vertex->Successors.end(); ++iter)
-	{
-		// If promising
-		if ((*iter)->Letter == word[indexIntoWord] && !(*iter)->Visited)
-		{
-			// Try choice
-			(*iter)->Visited = true;
-			if (isWordOnBoardAux(*iter, word, indexIntoWord + 1))
-			{
-				return true;
-			}
-
-		}
-	}
-
-	return false;
-}
-*/
-
 
 void BoggleBoard::resetVisitedStatusOfTilesToFalse()
 {
