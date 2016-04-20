@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
   Lexicon lexicon(lexiconFile);
 
   // make the computer player
-  ComputerPlayer computer(lexicon);
+  ComputerPlayer computer;
 
   // make the log file prefixes
   string humanFilePrefix = "human";
@@ -77,6 +77,9 @@ int main(int argc, char* argv[])
     // STUDENT SECTION
     // Make a set of humanWords
     set<string> humanWords;
+
+    // Make a set of compWords
+    set<string> compWords;
     
     // get human player words
     string humanPlayerWord;
@@ -123,19 +126,18 @@ int main(int argc, char* argv[])
     console.logWords(humanWords.begin(), humanWords.end(), humanFilePrefix, playCount);
 
 
-      /*  
-    TODO: This section...
+       
+    // TODO: This section...
     // ask computer player for words
     cout << endl << "Thinking..." << endl << endl;;
-    computer.playBoggle(...);
-    int computerScore = ...;
+    computer.playBoggle(board, lexicon, humanWords, compWords);
+    int computerScore = compWords.size();
 
     // log the computer player's words
     console.logWords(compWords.begin(), compWords.end(), computerFilePrefix, playCount);
-      */
 
     // print score
-    console.printScore(humanScore, 0);
+    console.printScore(humanScore, computerScore);
 
     // END STUDENT SECTION 
  
