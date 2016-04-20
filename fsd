@@ -1,0 +1,77 @@
+[33mcommit c79de89e19853e1d383592f63803bec7304a28f3[m
+Author: EmmaElliott <elliott_e@lynchburg.edu>
+Date:   Sat Apr 16 14:40:38 2016 -0400
+
+    Added to main for check player's given word
+
+[33mcommit 6beddf3688a78f193658b6a76c065c196dcd0309[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Sat Apr 16 14:38:42 2016 -0400
+
+    Finish isWordAux() backtracking in BoggleBoard.cpp.
+
+[33mcommit 5ca278499bde8841da9379a7a94caf34b0094daf[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Sat Apr 16 12:44:26 2016 -0400
+
+    Generate graph in BoggleBoard.cpp.
+
+[33mcommit 88195ecd72c9535cc705fe5332f43dd1f9db6586[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Sat Apr 16 10:25:16 2016 -0400
+
+    Add private Vertex class to BoggleBoard.h
+
+[33mcommit 1e8516785b3abfacfe0dc04dd9f91ab9465c7444[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Sat Apr 16 10:12:56 2016 -0400
+
+    Some update...
+
+[33mcommit a4ee6cdfa42525b5c02796175d3d105cde9fba32[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Wed Apr 13 14:16:13 2016 -0400
+
+    Add word to Makefile to remove tests.exe when you clean.
+
+[33mcommit d24227504643e08b43798c0205359ca17f902099[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Wed Apr 13 14:12:30 2016 -0400
+
+    Add files that I forgot to add from the mooodle page.
+
+[33mcommit 7d6915f5d536b089556a33646f6d37959dfea040[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Mon Apr 11 10:21:53 2016 -0400
+
+    Add testLesiconFromConsole() in tests.cpp for the milestone.
+
+[33mcommit a765ddba57f418c8462630e61926674074123fb0[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Sun Apr 10 18:49:32 2016 -0400
+
+    Make isPrefix() more efficient in Lexicon.cpp.
+
+[33mcommit 0824f319205dd586f808df6f40d0d469270b5d80[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Sun Apr 10 18:48:06 2016 -0400
+
+    Make isPrefix
+
+[33mcommit bb579b4b7e3f8a01824787161be08b456ccc6f8d[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Sun Apr 10 17:28:15 2016 -0400
+
+    Correct bug in wordStatus() in Lexicon.cpp.
+
+[33mcommit 5cb23905a672f43f22f86871355371a9bc6b9d6e[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Sun Apr 10 12:35:35 2016 -0400
+
+    Add test executable and comments.
+
+[33mcommit 01b91d9ca09d187bd3a741c37761c516e34e1eeb[m
+Author: Jeffrey McCullen <McCullen_J@lynchburg.edu>
+Date:   Sun Apr 10 11:41:25 2016 -0400
+
+    Complete Lexicon class and comment out everything in Main.cpp.
