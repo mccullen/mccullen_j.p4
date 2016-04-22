@@ -7,6 +7,7 @@ Description:
 #define BOGGLE_BOARD_H
 
 #include "BogglePieceGenerator.h"
+#include "LCExceptions.h"
 #include <vector>
 #include <utility>
 #include <list>
@@ -39,7 +40,8 @@ public:
 	/*
 	 * returns the character found on the board at this location
 	 */
-	char getLetter(int row,int column);
+	char getLetter(int row,int column) 
+		throw (OutOfBoundsException);
 	int getWidth() const;
 
 	/*

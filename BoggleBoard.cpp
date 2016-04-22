@@ -6,6 +6,7 @@ Description:
 
 #include "BogglePieceGenerator.h"
 #include "BoggleBoard.h"
+#include "LCExceptions.h"
 #include <vector>
 #include <utility>
 #include <iostream>
@@ -56,7 +57,11 @@ BoggleBoard::Tile** BoggleBoard::allocateBoard(int width,
 
 BoggleBoard::~BoggleBoard(void)
 {
-	// TODO: deallocate board
+	for (int iRow = 0; iRow < _width; ++iRow)
+	{
+		delete[] _board[iRow];
+	}
+	delete[] _board;
 }
 
 BoggleBoard::BoggleBoard(const BoggleBoard& original)
@@ -72,12 +77,12 @@ BoggleBoard& BoggleBoard::operator=(const BoggleBoard& rhs)
  * returns the character found on the board at this location
  */
 char BoggleBoard::getLetter(int row,int column)
+	throw (OutOfBoundsException)
 {
 	if (row < 0 || row >= _width ||
 		column < 0 || column >= _width)
 	{
-		// TODO: throw exception
-		cerr << "Exception thrown! Yikes!\n";
+		throw OutOfBoundsException();
 	}
 	return _board[row][column].Letter;
 }
@@ -106,7 +111,6 @@ bool BoggleBoard::isWordOnBoard(string word)
 		}
 	}
 	return false;
-	//return isWordOnBoardAux(word, _board[0][0], 0);
 }
 
 bool BoggleBoard::isWordOnBoardAux(const std::string& word, 

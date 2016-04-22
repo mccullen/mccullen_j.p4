@@ -11,15 +11,20 @@ tests.exe: tests.o BogglePieceGenerator.o Lexicon.o
 	$(CC) $(CFLAGS) -o tests.exe tests.o BogglePieceGenerator.o Lexicon.o
 
 boggle.exe: Main.o BogglePieceGenerator.o Lexicon.o ConsoleInterface.o \
-BoggleBoard.o ComputerPlayer.o
+BoggleBoard.o ComputerPlayer.o LCExceptions.o
 	$(CC) $(CFLAGS) -o boggle.exe Main.o BogglePieceGenerator.o \
-	Lexicon.o ConsoleInterface.o BoggleBoard.o ComputerPlayer.o
+	Lexicon.o ConsoleInterface.o BoggleBoard.o ComputerPlayer.o \
+	LCExceptions.o
+
+LCExceptions.o: LCExceptions.cpp LCExceptions.h
+	$(CC) $(CFLAGS) -c LCExceptions.cpp
 
 ComputerPlayer.o: ComputerPlayer.cpp ComputerPlayer.h Lexicon.h \
 	BoggleBoard.h
 	$(CC) $(CFLAGS) -c ComputerPlayer.cpp
 
-BoggleBoard.o: BoggleBoard.cpp BoggleBoard.h BogglePieceGenerator.h
+BoggleBoard.o: BoggleBoard.cpp BoggleBoard.h BogglePieceGenerator.h \
+LCExceptions.h
 	$(CC) $(CFLAGS) -c BoggleBoard.cpp
 
 ConsoleInterface.o: ConsoleInterface.cpp ConsoleInterface.h \

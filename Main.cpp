@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
     // TODO: This section...
     // ask computer player for words
     cout << endl << "Thinking..." << endl << endl;;
-    computer.playBoggle(board, lexicon, humanWords, compWords);
+    computer.playBoggle(board, lexicon, minLetters, humanWords, compWords);
     int computerScore = compWords.size();
 
     // output words to screen

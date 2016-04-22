@@ -15,8 +15,10 @@ ComputerPlayer::ComputerPlayer()
 {
 }
 
-void ComputerPlayer::playBoggle(BoggleBoard& board, 
+void ComputerPlayer::playBoggle(
+	BoggleBoard& board, 
 	const Lexicon& lexicon,
+	int minLetters,
 	const std::set<std::string>& humanWords,
 	std::set<std::string>& compWords) const
 {
@@ -29,7 +31,7 @@ void ComputerPlayer::playBoggle(BoggleBoard& board,
 			// store all the words that can be found that
 			// are not in humanWords into compWords.
 			playBoggleAux(row, column, word, board, lexicon,
-				humanWords, compWords);
+				minLetters, humanWords, compWords);
 		}
 	}
 }
@@ -43,6 +45,7 @@ void ComputerPlayer::playBoggleAux(
 	std::string& word, 
 	BoggleBoard& board, 
 	const Lexicon& lexicon,
+	int minLetters,
 	const std::set<std::string>& humanWords,
 	std::set<std::string>& compWords) const
 {
@@ -55,7 +58,7 @@ void ComputerPlayer::playBoggleAux(
 	if (humanWords.find(word) == humanWords.end() &&
 		lexicon.wordStatus(word) == Lexicon::WORD &&
 		board.isWordOnBoard(word) &&
-		word.size() >= 3)
+		word.size() >= minLetters)
 	{
 		// add it to compWords
 		compWords.insert(word);
@@ -74,7 +77,7 @@ void ComputerPlayer::playBoggleAux(
 			{
 				// Try next choice.
 				//word.push_back(board.getLetter(iRow, iColumn));
-				playBoggleAux(iRow, iColumn, word, board, lexicon, humanWords, compWords);
+				playBoggleAux(iRow, iColumn, word, board, lexicon, minLetters, humanWords, compWords);
 				// untry choice.
 				//word.erase(word.size()-1);
 			}

@@ -19,13 +19,16 @@ private:
 		std::string& word, 
 		BoggleBoard& board,
 		const Lexicon& lexicon,
+		int minLetters,
 		const std::set<std::string>& humanWords,
 		std::set<std::string>& compwords) const;
 public:
 	ComputerPlayer();
 
-	virtual void playBoggle(BoggleBoard& board, 
+	virtual void playBoggle(
+		BoggleBoard& board, 
 		const Lexicon& lexicon,
+		int minLetters,
 		const std::set<std::string>& humanWords,
 		std::set<std::string>& compWords) const;
 
