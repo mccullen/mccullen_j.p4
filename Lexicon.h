@@ -9,6 +9,7 @@ Description:
 #include <string>
 #include <vector>
 #include <list>
+#include <set>
 
 class Lexicon
 {
@@ -24,7 +25,7 @@ public:
 private:
 	virtual bool isPrefix(const std::string& prefix, 
 		const std::string& word) const;
-	std::list<std::string> _words;
+	std::set<std::string> _words;
 };
 
 #endif

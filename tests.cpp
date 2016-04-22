@@ -25,6 +25,7 @@ int main(int argc, char** argv)
 
 void testLexiconFromConsole()
 {
+	// TODO: set fault???
 	Lexicon lexicon("lexicon-clean.txt");
 
 	string word;
