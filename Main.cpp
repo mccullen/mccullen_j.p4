@@ -12,6 +12,7 @@ Description:
 #include <fstream>
 #include <set>
 
+
 int main(int argc, char* argv[])
 {
   // Set default command line arguments
@@ -132,6 +133,14 @@ int main(int argc, char* argv[])
     cout << endl << "Thinking..." << endl << endl;;
     computer.playBoggle(board, lexicon, humanWords, compWords);
     int computerScore = compWords.size();
+
+    // output words to screen
+    for (set<string>::iterator iter = compWords.begin();
+      iter != compWords.end(); ++iter)
+    {
+      cout << *iter << endl;
+    }
+
 
     // log the computer player's words
     console.logWords(compWords.begin(), compWords.end(), computerFilePrefix, playCount);

@@ -37,12 +37,14 @@ BogglePieceGenerator.o: BogglePieceGenerator.cpp BogglePieceGenerator.h
 	$(CC) $(CFLAGS) -c BogglePieceGenerator.cpp
 
 Lexicon.o: Lexicon.cpp Lexicon.h
+	$(CC) $(CFLAGS) -c Lexicon.cpp
 
 BoggleBoard.h: BogglePieceGenerator.h
 
 ComputerPlayer.h: Lexicon.h BoggleBoard.h
 
 ConsoleInterface.h: BoggleBoard.h
+
 
 clean:
 	rm -f tests.exe boggle.exe *.o *~

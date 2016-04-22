@@ -77,12 +77,12 @@ char BoggleBoard::getLetter(int row,int column)
 		column < 0 || column >= _width)
 	{
 		// TODO: throw exception
-		cerr << "Exception thrown!\n";
+		cerr << "Exception thrown! Yikes!\n";
 	}
 	return _board[row][column].Letter;
 }
 
-int BoggleBoard::getWidth()
+int BoggleBoard::getWidth() const
 {
 	return _width;
 }

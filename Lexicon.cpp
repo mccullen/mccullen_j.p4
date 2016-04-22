@@ -10,7 +10,7 @@ Description:
 using namespace std;
 
 
-Lexicon::Lexicon(string lexFile)
+Lexicon::Lexicon(const std::string& lexFile)
 {
 	ifstream in(lexFile.c_str());
 
@@ -22,7 +22,7 @@ Lexicon::Lexicon(string lexFile)
 	in.close();
 }
 
-Lexicon::Status Lexicon::wordStatus(string word)
+Lexicon::Status Lexicon::wordStatus(const string& word) const
 {
 	// Assume word is NOT_WORD
 	Status status = NOT_WORD;
@@ -46,7 +46,7 @@ Lexicon::Status Lexicon::wordStatus(string word)
 }
 
 bool Lexicon::isPrefix(const std::string& prefix, 
-	const std::string& word)
+	const std::string& word) const
 {
 	int index = 0;
 

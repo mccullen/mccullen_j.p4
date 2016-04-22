@@ -12,10 +12,19 @@ Description:
 
 class ComputerPlayer
 {
+private:
+	virtual void playBoggleAux(
+		int row, 
+		int column,
+		std::string& word, 
+		BoggleBoard& board,
+		const Lexicon& lexicon,
+		const std::set<std::string>& humanWords,
+		std::set<std::string>& compwords) const;
 public:
 	ComputerPlayer();
 
-	virtual void playBoggle(const BoggleBoard& board, 
+	virtual void playBoggle(BoggleBoard& board, 
 		const Lexicon& lexicon,
 		const std::set<std::string>& humanWords,
 		std::set<std::string>& compWords) const;

@@ -40,7 +40,7 @@ public:
 	 * returns the character found on the board at this location
 	 */
 	char getLetter(int row,int column);
-	int getWidth();
+	int getWidth() const;
 
 	/*
 	 * returns true if this word is found on the board

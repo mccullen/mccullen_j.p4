@@ -16,14 +16,14 @@ public:
 
 	enum Status{NOT_WORD, WORD, WORD_PREFIX};
 
-	Lexicon(std::string lexFile);
+	Lexicon(const std::string& lexFile);
 	virtual ~Lexicon();
 
-	Status wordStatus(std::string word);
+	Status wordStatus(const std::string& word) const;
 
 private:
 	virtual bool isPrefix(const std::string& prefix, 
-		const std::string& word);
+		const std::string& word) const;
 	std::list<std::string> _words;
 };
 
