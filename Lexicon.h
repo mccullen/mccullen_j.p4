@@ -23,8 +23,6 @@ public:
 	Status wordStatus(const std::string& word) const;
 
 private:
-	virtual bool isPrefix(const std::string& prefix, 
-		const std::string& word) const;
 	std::set<std::string> _words;
 };
 
