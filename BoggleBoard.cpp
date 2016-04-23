@@ -159,8 +159,40 @@ bool BoggleBoard::recurseThroughSuccessors(const std::string& word,
 	const Tile& tile, int indexIntoWord)
 {
 	
-	bool retVal;
 	// Go through all successors
+	bool retVal = false;
+	int row = tile.Row - 1;
+	while (row <= tile.Row + 1 && !retVal)
+	{
+		if (validRow(row, tile))
+		{
+			int column = tile.Column - 1;
+			while (	column <= tile.Column + 1 && !retVal)
+			{
+				if (validColumn(column, tile))
+				{
+					// If in range and promising
+					if (!(row == tile.Row && 
+						column == tile.Column) &&
+						promising(row, column, 
+							word, indexIntoWord))
+					{
+						// Try choice
+						_board[row][column].Visited = true;
+						retVal = isWordOnBoardAux(word,_board[row][column], indexIntoWord+1);
+						_board[row][column].Visited = false;
+					}
+				}
+				++column;
+			}
+		}
+		++row;
+	}
+	return retVal;
+
+
+	/*
+	bool retVal = false;
 	for (int row = tile.Row - 1; row <= tile.Row + 1 && !retVal; ++row)
 	{
 		if (validRow(row, tile))
@@ -187,6 +219,7 @@ bool BoggleBoard::recurseThroughSuccessors(const std::string& word,
 		}
 	}
 	return retVal;
+	*/
 }
 bool BoggleBoard::validRow(int row, const Tile& tile) const
 {
