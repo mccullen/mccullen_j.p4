@@ -27,6 +27,20 @@ BoggleBoard::BoggleBoard(int width, BogglePieceGenerator& gen) :
 	_width(width), _board(allocateBoard(width, gen))
 {
 }
+BoggleBoard::Tile** BoggleBoard::
+	allocateAndCopy(BoggleBoard::Tile** board, int width) const
+{
+	Tile** copy = new Tile*[width];
+	for (int row = 0; row < width; ++row)
+	{
+		copy[row] = new Tile[width];
+		for (int column = 0; column < width; ++column)
+		{
+			copy[row][column] = board[row][column];
+		}
+	}
+	return copy;
+}
 
 BoggleBoard::Tile** BoggleBoard::allocateBoard(int width,
 	BogglePieceGenerator& gen) const
@@ -99,18 +113,21 @@ bool BoggleBoard::isWordOnBoard(string word)
 {
 	resetVisitedStatusOfTilesToFalse();
 
-	// TODO: finish this function...
-	for (int row = 0; row < _width; ++row)
+	int row = 0;
+	bool isOnBoard = false;
+	while (row < _width && !isOnBoard)
 	{
-		for (int column = 0; column < _width; ++column)
+		int column = 0;
+		while (column < _width && !isOnBoard)
 		{
-			if (isWordOnBoardAux(word, _board[row][column], 0))
-			{
-				return true;
-			}
+			isOnBoard = 
+				isWordOnBoardAux(word, _board[row][column],0);
+			++column;
 		}
+		++row;
 	}
-	return false;
+	return isOnBoard;
+
 }
 
 bool BoggleBoard::isWordOnBoardAux(const std::string& word, 
