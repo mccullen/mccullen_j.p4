@@ -7,6 +7,7 @@ Description:
 #include "ComputerPlayer.h"
 #include "Lexicon.h"
 #include "BogglePieceGenerator.h"
+#include "utility.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -116,6 +117,8 @@ int main(int argc, char* argv[])
       
       else
       {
+	// TODO: Make uppercase
+        //makeUpperCase(humanPlayerWord);
 	humanWords.insert(humanPlayerWord);
       }
 

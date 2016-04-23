@@ -24,6 +24,7 @@ public:
 
 private:
 	std::set<std::string> _words;
+
 };
 
 #endif

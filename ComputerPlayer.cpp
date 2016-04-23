@@ -9,6 +9,8 @@ Description:
 #include "Lexicon.h"
 #include "ComputerPlayer.h"
 #include "BoggleBoard.h"
+#include "utility.h"
+
 using namespace std;
 
 ComputerPlayer::ComputerPlayer()
@@ -61,6 +63,8 @@ void ComputerPlayer::playBoggleAux(
 		word.size() >= minLetters)
 	{
 		// add it to compWords
+		// TODO: Make upper case
+		//makeUpperCase(word);
 		compWords.insert(word);
 	}
 	// TODO: Make more efficient by short circuiting and 

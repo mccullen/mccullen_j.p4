@@ -23,6 +23,7 @@ Lexicon::Lexicon(const std::string& lexFile)
 	in.close();
 }
 
+
 Lexicon::Status Lexicon::wordStatus(const string& word) const
 {
 	Status status = NOT_WORD;
