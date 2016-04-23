@@ -143,39 +143,50 @@ bool BoggleBoard::isWordOnBoardAux(const std::string& word,
 	const Tile& tile,
 	int indexIntoWord)
 {
+	bool retVal = false;
 	if (indexIntoWord == word.size())
 	{
-		return true;
+		retVal = true;
 	}
+	else
+	{
+		retVal = recurseThroughSuccessors(word, tile, indexIntoWord);
+
+	}
+	return retVal;
+}
+bool BoggleBoard::recurseThroughSuccessors(const std::string& word,
+	const Tile& tile, int indexIntoWord)
+{
+	
+	bool retVal;
 	// Go through all successors
-	for (int row = tile.Row - 1; row <= tile.Row + 1; ++row)
+	for (int row = tile.Row - 1; row <= tile.Row + 1 && !retVal; ++row)
 	{
 		if (validRow(row, tile))
 		{
 			for (int column = tile.Column - 1;
-				column <= tile.Column + 1; ++column)
+				column <= tile.Column + 1 && !retVal;
+				++column)
 			{
 				if (validColumn(column, tile))
 				{
 					// If in range and promising
-					if (!(row == tile.Row && column == tile.Column) &&
-						promising(row, column, word, indexIntoWord))
+					if (!(row == tile.Row && 
+						column == tile.Column) &&
+						promising(row, column, 
+							word, indexIntoWord))
 					{
 						// Try choice
 						_board[row][column].Visited = true;
-						if (isWordOnBoardAux(word,
-							_board[row][column],
-							indexIntoWord + 1))
-						{
-							return true;
-						}
+						retVal = isWordOnBoardAux(word,_board[row][column], indexIntoWord+1);
 						_board[row][column].Visited = false;
 					}
 				}
 			}
 		}
 	}
-	return false;
+	return retVal;
 }
 bool BoggleBoard::validRow(int row, const Tile& tile) const
 {

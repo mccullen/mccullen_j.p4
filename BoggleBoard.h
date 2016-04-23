@@ -73,6 +73,8 @@ private:
 	virtual bool validColumn(int column, const Tile& tile) const;
 	virtual Tile** allocateAndCopy(Tile** board, int width) const;
 	virtual void destroyBoard();
+	virtual bool recurseThroughSuccessors(const std::string& word,
+		const Tile& tile, int indexIntoWord);
 };
 
 #endif
