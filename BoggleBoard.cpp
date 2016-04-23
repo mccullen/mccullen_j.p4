@@ -69,7 +69,7 @@ BoggleBoard::Tile** BoggleBoard::allocateBoard(int width,
 }
 
 
-BoggleBoard::~BoggleBoard(void)
+void BoggleBoard::destroyBoard()
 {
 	for (int iRow = 0; iRow < _width; ++iRow)
 	{
@@ -78,12 +78,21 @@ BoggleBoard::~BoggleBoard(void)
 	delete[] _board;
 }
 
-BoggleBoard::BoggleBoard(const BoggleBoard& original)
+BoggleBoard::BoggleBoard(const BoggleBoard& original) :
+	_width(original._width), 
+	_board(allocateAndCopy(original._board, original._width))
 {
 }
 
 BoggleBoard& BoggleBoard::operator=(const BoggleBoard& rhs)
 {
+	if (this != &rhs)
+	{
+		destroyBoard();
+		_width = rhs._width;
+		_board = allocateAndCopy(rhs._board, rhs._width);
+	}
+	return *this;
 }
 
 
@@ -202,3 +211,7 @@ void BoggleBoard::resetVisitedStatusOfTilesToFalse()
 	}
 }
 
+BoggleBoard::~BoggleBoard(void)
+{
+	destroyBoard();
+}

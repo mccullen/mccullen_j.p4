@@ -72,6 +72,7 @@ private:
 	virtual bool validRow(int row, const Tile& tile) const;
 	virtual bool validColumn(int column, const Tile& tile) const;
 	virtual Tile** allocateAndCopy(Tile** board, int width) const;
+	virtual void destroyBoard();
 };
 
 #endif
