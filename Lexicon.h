@@ -15,12 +15,29 @@ class Lexicon
 {
 public:
 
+	// The status of a given word.
 	enum Status{NOT_WORD, WORD, WORD_PREFIX};
 
+	/**
+	 * Construct a Lexicon from a file.
+	 *
+	 * @param lexFile The url path to the lexicon file.
+	 */
 	Lexicon(const std::string& lexFile);
-	virtual ~Lexicon();
 
+	/**
+	 * Get the status (NOT_WORD, WORD, or WORD_PREFIX) of a given
+	 * word.
+	 *
+	 * @param word The word to get the status of.
+	 * @return The status of the word.
+	 */
 	Status wordStatus(const std::string& word) const;
+
+	/**
+	 * Destruct the lexicon.
+	 */
+	virtual ~Lexicon();
 
 private:
 	std::set<std::string> _words;

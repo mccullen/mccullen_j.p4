@@ -13,10 +13,22 @@ Description:
 
 using namespace std;
 
+/**
+ * Construct a default ComputerPlayer.
+ */
 ComputerPlayer::ComputerPlayer()
 {
 }
 
+/**
+ * Play a game of boggle and store all the words in compWords.
+ *
+ * @param board The boggle board.
+ * @param lexicon The lexicon which contains valid words.
+ * @param minLetters The minimum length of a valid word.
+ * @param humanWords Set of words the human has already played.
+ * @param compWords Set of words the computer will play.
+ */
 void ComputerPlayer::playBoggle(
 	BoggleBoard& board, 
 	const Lexicon& lexicon,
@@ -39,7 +51,7 @@ void ComputerPlayer::playBoggle(
 }
 
 /**
- * 
+ * Recursive helper function for playBoggle().
  */
 void ComputerPlayer::playBoggleAux(
 	int row,
@@ -90,6 +102,9 @@ void ComputerPlayer::playBoggleAux(
 	word.erase(word.size()-1);
 }
 
+/**
+ * Destruct a ComputerPlayer.
+ */
 ComputerPlayer::~ComputerPlayer(void)
 {
 }
