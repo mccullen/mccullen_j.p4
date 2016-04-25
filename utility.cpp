@@ -8,10 +8,10 @@ Make the given word all uppercase.
 
 @param word The word to make uppercase.
 */
-void makeUpperCase(std::string& word)
+void makeLowerCase(std::string& word)
 {
 	for (size_t i = 0; i < word.size(); ++i)
 	{
-		word[i] = toupper(word[i]);
+		word[i] = tolower(word[i]);
 	}
 }

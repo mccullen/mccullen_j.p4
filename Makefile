@@ -7,8 +7,9 @@ CFLAGS = -g #-Wall
 
 all: boggle.exe tests.exe
 
-tests.exe: tests.o BogglePieceGenerator.o Lexicon.o
-	$(CC) $(CFLAGS) -o tests.exe tests.o BogglePieceGenerator.o Lexicon.o
+tests.exe: tests.o BogglePieceGenerator.o Lexicon.o utility.o
+	$(CC) $(CFLAGS) -o tests.exe tests.o BogglePieceGenerator.o Lexicon.o \
+	utility.o
 
 boggle.exe: Main.o BogglePieceGenerator.o Lexicon.o ConsoleInterface.o \
 BoggleBoard.o ComputerPlayer.o LCExceptions.o utility.o
@@ -44,7 +45,7 @@ Main.o: Main.cpp ConsoleInterface.h ComputerPlayer.h Lexicon.h \
 BogglePieceGenerator.o: BogglePieceGenerator.cpp BogglePieceGenerator.h
 	$(CC) $(CFLAGS) -c BogglePieceGenerator.cpp
 
-Lexicon.o: Lexicon.cpp Lexicon.h
+Lexicon.o: Lexicon.cpp Lexicon.h utility.h
 	$(CC) $(CFLAGS) -c Lexicon.cpp
 
 BoggleBoard.h: BogglePieceGenerator.h

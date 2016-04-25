@@ -7,7 +7,9 @@ Description:
 #include <set>
 #include <vector>
 #include <fstream>
+#include "utility.h"
 #include "Lexicon.h"
+
 using namespace std;
 
 
@@ -25,6 +27,7 @@ Lexicon::Lexicon(const std::string& lexFile)
 	string word;
 	while (getline(in, word))
 	{
+		makeLowerCase(word);
 		_words.insert(word);
 	}
 	in.close();

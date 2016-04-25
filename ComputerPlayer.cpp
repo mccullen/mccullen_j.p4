@@ -67,8 +67,7 @@ void ComputerPlayer::playBoggleAux(
 	// end rather than in the if statement?
 	word.push_back(board.getLetter(row, column));
 	// If the word is in board in not in human words
-	// TODO: Change the last condition so it checks for whatever
-	// the user inputs as the minimum size.
+	// TODO: Make more efficient by short circuiting.
 	if (humanWords.find(word) == humanWords.end() &&
 		lexicon.wordStatus(word) == Lexicon::WORD &&
 		board.isWordOnBoard(word) &&
@@ -78,6 +77,7 @@ void ComputerPlayer::playBoggleAux(
 		// TODO: Make upper case
 		//makeUpperCase(word);
 		compWords.insert(word);
+		//compWords.insert(makeUpperCase(word));
 	}
 	// TODO: Make more efficient by short circuiting and 
 	// checking for valid row and column.

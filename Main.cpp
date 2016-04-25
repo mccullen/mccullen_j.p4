@@ -87,12 +87,14 @@ int main(int argc, char* argv[])
     string humanPlayerWord;
     while( console.readNextMove(humanPlayerWord) ){
 
+      makeLowerCase(humanPlayerWord);
       // check to see whether the string is the correct length
       // if not, ask for another
       if(humanPlayerWord.length() < minLetters || humanPlayerWord.length() > (boardSize * boardSize))
       {
 	cout << "Error: Word is not the correct size.\n";
       }	
+
 
       // check to see whether the string is actually a word
       // if not, ask for another
