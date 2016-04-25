@@ -1,7 +1,8 @@
 /**
 Name: Jeff McCullen and Emma Elliott
 Date: April 10, 2016
-Description:
+Description: BigglePieceGenerator is a class which randomly generates
+boggle pieces.
 */
 #ifndef BOGGLE_PIECE_GENERATOR_H
 #define BOGGLE_PIECE_GENERATOR_H

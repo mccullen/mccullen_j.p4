@@ -1,7 +1,10 @@
 /**
 Name: Jeff McCullen and Emma Elliott
 Date: April 10, 2016
-Description:
+Description: Implemention of Lexicon class which takes in a file
+of words separated by CRLF and stores them in a set. It allwes the
+user to determine wheater a given word is a WORD, WORD_PREFIX, or 
+NOT_WORD.
 */
 #include <string>
 #include <set>

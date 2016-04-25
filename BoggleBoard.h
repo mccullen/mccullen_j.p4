@@ -1,7 +1,8 @@
-/**
+/** 
 Name: Jeff McCullen and Emma Elliott
 Date: April 10, 2016
-Description:
+Description: BoggleBoard class interface which represents
+the physical boggle board.
 */
 #ifndef BOGGLE_BOARD_H
 #define BOGGLE_BOARD_H
@@ -112,7 +113,7 @@ private:
 	 * Recursive helper function for isWordOnBoard.
 	 */
 	virtual bool isWordOnBoardAux(const std::string& word,
-		const Tile& tile, int indexIntoWord);
+		const Tile& tile, size_t indexIntoWord);
 
 	/**
 	 * Determine wheather traversing the tree at this node could
@@ -125,7 +126,7 @@ private:
 	 * @return True if the node is promising.
  	 */
 	virtual bool promising(int row, int column,
-		const std::string& word, int indexIntoWord) const;
+		const std::string& word, size_t indexIntoWord) const;
 
 	/**
 	 * Determine if the given row and column are in range.
@@ -173,7 +174,7 @@ private:
 	 * through successor nodes.
 	 */
 	virtual bool recurseThroughSuccessors(const std::string& word,
-		const Tile& tile, int indexIntoWord);
+		const Tile& tile, size_t indexIntoWord);
 };
 
 #endif

@@ -1,8 +1,14 @@
 /**
 Name: Jeff McCullen and Emma Elliott
 Date: April 10, 2016
-Description:
+Description: Main program for playing boggle. 
+
+usage: <boardSize> <rseed> <minLetters> <lexiconFile>
+
+To time this application on command line:
+time boggle.exe < input.txt
 */
+
 #include "ConsoleInterface.h"
 #include "ComputerPlayer.h"
 #include "Lexicon.h"
@@ -90,7 +96,8 @@ int main(int argc, char* argv[])
       makeLowerCase(humanPlayerWord);
       // check to see whether the string is the correct length
       // if not, ask for another
-      if(humanPlayerWord.length() < minLetters || humanPlayerWord.length() > (boardSize * boardSize))
+      if(humanPlayerWord.length() < static_cast<size_t>(minLetters)
+      	|| humanPlayerWord.length() > static_cast<size_t>(boardSize * boardSize))
       {
 	cout << "Error: Word is not the correct size.\n";
       }	
@@ -119,8 +126,6 @@ int main(int argc, char* argv[])
       
       else
       {
-	// TODO: Make uppercase
-        //makeUpperCase(humanPlayerWord);
 	humanWords.insert(humanPlayerWord);
       }
 
@@ -133,18 +138,20 @@ int main(int argc, char* argv[])
 
 
        
-    // TODO: This section...
     // ask computer player for words
     cout << endl << "Thinking..." << endl << endl;;
     computer.playBoggle(board, lexicon, minLetters, humanWords, compWords);
     int computerScore = compWords.size();
 
     // output words to screen
+    /*
+    Note: Uncomment to print words to screen.
     for (set<string>::iterator iter = compWords.begin();
       iter != compWords.end(); ++iter)
     {
       cout << *iter << endl;
     }
+    */
 
 
     // log the computer player's words

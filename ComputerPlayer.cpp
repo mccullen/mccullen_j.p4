@@ -67,25 +67,21 @@ void ComputerPlayer::playBoggleAux(
 	// end rather than in the if statement?
 	word.push_back(board.getLetter(row, column));
 	// If the word is in board in not in human words
-	// TODO: Make more efficient by short circuiting.
-	if (humanWords.find(word) == humanWords.end() &&
+	if (word.size() >= static_cast<size_t>(minLetters) &&
+		humanWords.find(word) == humanWords.end() &&
 		lexicon.wordStatus(word) == Lexicon::WORD &&
-		board.isWordOnBoard(word) &&
-		word.size() >= minLetters)
+		board.isWordOnBoard(word))
 	{
 		// add it to compWords
-		// TODO: Make upper case
-		//makeUpperCase(word);
 		compWords.insert(word);
-		//compWords.insert(makeUpperCase(word));
 	}
-	// TODO: Make more efficient by short circuiting and 
 	// checking for valid row and column.
-	for (int iRow = row-1; iRow <= row+1 && iRow < board.getWidth(); ++iRow)
+	int iRow = row-1;
+	while (iRow <= row+1 && iRow < board.getWidth())
 	{
-		for (int iColumn = column-1; iColumn <= column+1 && iColumn < board.getWidth(); ++iColumn)
+		int iColumn = column-1;
+		while (iColumn <= column+1 && iColumn < board.getWidth())
 		{
-			// TODO: Check for just PREFIX?
 			if (iRow >= 0 && iColumn >= 0 && 
 				lexicon.wordStatus(
 				word) != 
@@ -97,7 +93,9 @@ void ComputerPlayer::playBoggleAux(
 				// untry choice.
 				//word.erase(word.size()-1);
 			}
+			++iColumn;
 		}
+		++iRow;
 	}
 	word.erase(word.size()-1);
 }

@@ -1,7 +1,8 @@
 /**
 Name: Jeff McCullen and Emma Elliott
 Date: April 10, 2016
-Description:
+Description: BoggleBoard class implementation which represents
+the physical boggle board.
 */
 
 #include "BogglePieceGenerator.h"
@@ -183,7 +184,7 @@ bool BoggleBoard::isWordOnBoard(string word)
  */
 bool BoggleBoard::isWordOnBoardAux(const std::string& word, 
 	const Tile& tile,
-	int indexIntoWord)
+	size_t indexIntoWord)
 {
 	bool retVal = false;
 	if (indexIntoWord == word.size())
@@ -203,7 +204,7 @@ bool BoggleBoard::isWordOnBoardAux(const std::string& word,
  * through successor nodes.
  */
 bool BoggleBoard::recurseThroughSuccessors(const std::string& word,
-	const Tile& tile, int indexIntoWord)
+	const Tile& tile, size_t indexIntoWord)
 {
 	
 	// Go through all successors
@@ -273,7 +274,7 @@ bool BoggleBoard::validColumn(int column, const Tile& tile) const
  * @return True if the node is promising.
  */
 bool BoggleBoard::promising(int row, int column, 
-	const std::string& word, int indexIntoWord) const
+	const std::string& word, size_t indexIntoWord) const
 {
 	return _board[row][column].Letter == word[indexIntoWord] &&
 		_board[row][column].Visited == false;
