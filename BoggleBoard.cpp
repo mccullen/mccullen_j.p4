@@ -164,6 +164,9 @@ bool BoggleBoard::isWordOnBoard(string word)
 
 	int row = 0;
 	bool isOnBoard = false;
+
+	// Check every tile to see if it could lead to the word.
+	// Break if you found the word or ran out of tiles to check.
 	while (row < _width && !isOnBoard)
 	{
 		int column = 0;
@@ -188,10 +191,12 @@ bool BoggleBoard::isWordOnBoardAux(const std::string& word,
 	size_t indexIntoWord)
 {
 	bool retVal = false;
+	// If you found the word, return true
 	if (indexIntoWord == word.size())
 	{
 		retVal = true;
 	}
+	// Else, recurse through children and return that value.
 	else
 	{
 		retVal = recurseThroughSuccessors(word, tile, indexIntoWord);
@@ -207,7 +212,6 @@ bool BoggleBoard::isWordOnBoardAux(const std::string& word,
 bool BoggleBoard::recurseThroughSuccessors(const std::string& word,
 	const Tile& tile, size_t indexIntoWord)
 {
-	
 	// Go through all successors
 	bool retVal = false;
 	int row = tile.Row - 1;
@@ -228,7 +232,9 @@ bool BoggleBoard::recurseThroughSuccessors(const std::string& word,
 					{
 						// Try choice
 						_board[row][column].Visited = true;
+						// Recurse
 						retVal = isWordOnBoardAux(word,_board[row][column], indexIntoWord+1);
+						// Untry choice
 						_board[row][column].Visited = false;
 					}
 				}

@@ -63,16 +63,20 @@ void ComputerPlayer::playBoggleAux(
 	const std::set<std::string>& humanWords,
 	std::set<std::string>& compWords) const
 {
-	word.push_back(board.getLetter(row, column));
 	// Push on the current letter (you will need to push on 
 	// the next letters as you go through the successors). 
+	word.push_back(board.getLetter(row, column));
+
+	// Get status of word
 	Lexicon::Status status = lexicon.wordStatus(word);
+
+	// If status is promising (could possibly lead to a compWord)
 	if (status != Lexicon::NOT_WORD)
 	{
 		// If the word is in board in not in human words
 		if (word.size() >= static_cast<size_t>(minLetters) &&
-			humanWords.find(word) == humanWords.end() &&
 			status == Lexicon::WORD &&
+			humanWords.find(word) == humanWords.end() &&
 			board.isWordOnBoard(word))
 		{
 			// add it to compWords
@@ -82,7 +86,7 @@ void ComputerPlayer::playBoggleAux(
 		// children even if the word is in the solution b/c
 		// it may be both a word and a prefix to another word.
 
-		// checking for valid row and column.
+		// Go through all the children
 		int iRow = row-1;
 		while (iRow <= row+1 && iRow < board.getWidth())
 		{
@@ -103,6 +107,9 @@ void ComputerPlayer::playBoggleAux(
 	word.erase(word.size()-1); // backtrack
 
 	/*
+	Note: this is an alternative way to implement the backtracking
+	algorithm.
+
 	// Push on the current letter (you will need to push on 
 	// the next letters as you go through the successors). 
 	word.push_back(board.getLetter(row, column));

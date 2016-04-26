@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
       if(humanPlayerWord.length() < static_cast<size_t>(minLetters)
       	|| humanPlayerWord.length() > static_cast<size_t>(boardSize * boardSize))
       {
-	cout << "Error: Word is not the correct size.\n";
+	cout << "Error: " << humanPlayerWord << " is not the correct size.\n";
       }	
 
 
@@ -107,21 +107,21 @@ int main(int argc, char* argv[])
       // if not, ask for another
       else if(lexicon.wordStatus(humanPlayerWord) != Lexicon::WORD)
       {
-	cout << "Error: Word is not a word.\n";
+	cout << "Error: " << humanPlayerWord << " is not a word.\n";
       }
 
       // check to see whether it is on the board
       // if not, ask for another
       else if (!board.isWordOnBoard(humanPlayerWord))
       {
-        cout << "Error: Word is not on board.\n";
+        cout << "Error: " << humanPlayerWord << " is not on board.\n";
       }
 
       // check to see whether it has been played before
       // if so, ask for another
       else if (humanWords.find(humanPlayerWord) != humanWords.end())
       {
-        cout << "Error: Word already played.\n";
+        cout << "Error: " << humanPlayerWord << " has already been played.\n";
       }
       
       else
