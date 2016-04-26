@@ -170,7 +170,8 @@ bool BoggleBoard::isWordOnBoard(string word)
 		while (column < _width && !isOnBoard)
 		{
 			isOnBoard = 
-				isWordOnBoardAux(word, _board[row][column],0);
+				isWordOnBoardAux(word, 
+					_board[row][column],0);
 			++column;
 		}
 		++row;

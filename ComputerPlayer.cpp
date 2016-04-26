@@ -63,8 +63,48 @@ void ComputerPlayer::playBoggleAux(
 	const std::set<std::string>& humanWords,
 	std::set<std::string>& compWords) const
 {
-	// [jrm] why does this need to be here and erase at the 
-	// end rather than in the if statement?
+	word.push_back(board.getLetter(row, column));
+	// Push on the current letter (you will need to push on 
+	// the next letters as you go through the successors). 
+	Lexicon::Status status = lexicon.wordStatus(word);
+	if (status != Lexicon::NOT_WORD)
+	{
+		// If the word is in board in not in human words
+		if (word.size() >= static_cast<size_t>(minLetters) &&
+			humanWords.find(word) == humanWords.end() &&
+			status == Lexicon::WORD &&
+			board.isWordOnBoard(word))
+		{
+			// add it to compWords
+			compWords.insert(word);
+		}
+		// Note: No Else condition here b/c you want to go through
+		// children even if the word is in the solution b/c
+		// it may be both a word and a prefix to another word.
+
+		// checking for valid row and column.
+		int iRow = row-1;
+		while (iRow <= row+1 && iRow < board.getWidth())
+		{
+			int iColumn = column-1;
+			while (iColumn <= column+1 && iColumn < board.getWidth())
+			{
+				if (iRow >= 0 && iColumn >= 0)
+				{
+					playBoggleAux(iRow, iColumn, word, 
+						board, lexicon, minLetters, 
+						humanWords, compWords);
+				}
+				++iColumn;
+			}
+			++iRow;
+		}
+	}
+	word.erase(word.size()-1); // backtrack
+
+	/*
+	// Push on the current letter (you will need to push on 
+	// the next letters as you go through the successors). 
 	word.push_back(board.getLetter(row, column));
 	// If the word is in board in not in human words
 	if (word.size() >= static_cast<size_t>(minLetters) &&
@@ -87,17 +127,16 @@ void ComputerPlayer::playBoggleAux(
 				word) != 
 				Lexicon::NOT_WORD)
 			{
-				// Try next choice.
-				//word.push_back(board.getLetter(iRow, iColumn));
-				playBoggleAux(iRow, iColumn, word, board, lexicon, minLetters, humanWords, compWords);
-				// untry choice.
-				//word.erase(word.size()-1);
+				playBoggleAux(iRow, iColumn, word, 
+					board, lexicon, minLetters, 
+					humanWords, compWords);
 			}
 			++iColumn;
 		}
 		++iRow;
 	}
-	word.erase(word.size()-1);
+	word.erase(word.size()-1); // backtrack
+	*/
 }
 
 /**
